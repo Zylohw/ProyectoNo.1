@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Link de css de Bootstrap-->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <title>Agergar Cuenta </title>
+</head>
+<body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 py-3">
+  <a class="navbar-brand fw-semibold fs-4" href="../../index.html">Menu</a>
+
+  <ul class="nav nav-pills gap-2 ms-3">
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle fs-6 px-3 py-2"
+         data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        Cuentas Contables
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item py-2" href="../cuentascontables/agregar.html">Agregar Cuenta</a></li>
+        <li><a class="dropdown-item py-2" href="#">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="#">Modificar Cuenta</a></li>
+        <li><a class="dropdown-item py-2" href="#">Eliminar Cuenta</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle fs-6 px-3 py-2"
+         data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        Partidas contables
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item py-2" href="../cuentascontables/agregar.html">Agregar Cuenta</a></li>
+        <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="#">Modificar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="#">Eliminar Partidas</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle fs-6 px-3 py-2"
+         data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        Reportes
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item py-2" href="#">Libro Diario</a></li>
+        <li><a class="dropdown-item py-2" href="#">Libro Mayor</a></li>
+        <li><a class="dropdown-item py-2" href="#">Balance de Saldo</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>
+
+
+  <!--Form  para agregar cuenta-->
+  <div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-5">
+      <div class="card shadow-sm p-4">
+
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Modificar Cuenta</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserte el nombre de la cuenta">
+          </div>
+
+          <div class="mb-3">
+            <label for="Select" class="form-label">Seleccione el tipo de cuenta:</label>
+            <select id="Select" class="form-select">
+              <option>Activo</option>
+              <option>Pasivo</option>
+              <option>Gastos</option>
+              <option>Capital</option>
+              <option>Ingresos</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Modificar Cuenta</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--Link de JS con Bootstrap-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
