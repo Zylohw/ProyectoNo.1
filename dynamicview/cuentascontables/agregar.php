@@ -46,6 +46,7 @@
 <!--Manejo con php-->
 <?php 
 // conectando a la base de datos del servidoro
+try {
 $link = mysqli_connect('localhost','root','','contabilidad') or die
 ('No se pudo conectar  a la base ded datos error:  '.mysqli_error());
 // capturando los datos necesarios
@@ -62,8 +63,13 @@ echo '<div class="alert alert-success text-center">
     ✅ ¡La cuenta fue registrada exitosamente!
 </div>';
 mysqli_close($link);
-?>
+}catch (Exception $e){
+    echo '<div class="alert alert-danger text-center">
+            ⚠️favor acceder a la navbar y volver a agregar una cuenta si es lo que desea si no vuelva a menu
+        </div>';
+}
 
+?>
 
 
 
