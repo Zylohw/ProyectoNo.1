@@ -49,24 +49,32 @@
     <div class="col-12 col-sm-8 col-md-6 col-lg-5">
       <div class="card shadow-sm p-4">
 
-        <form>
+        <form action="../../dynamicview/cuentascontables/agregar.php" method="get">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Agregar Cuenta</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserte el nombre de la cuenta">
+            <label for="exampleInputEmail1" class="form-label mb-4 d-block text-center">Agregar Cuenta</label>
+            <!--Input para agregar el nombre de la cuenta-->
+
+            <input  name="codigo"type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserte el codigo de la cuenta">
+             
+            <br>
+
+            <input  name="cuenta"type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserte el nombre de la cuenta">
+
+
           </div>
 
           <div class="mb-3">
             <label for="Select" class="form-label">Seleccione el tipo de cuenta:</label>
-            <select id="Select" class="form-select">
-              <option>Activo</option>
-              <option>Pasivo</option>
-              <option>Gastos</option>
-              <option>Capital</option>
-              <option>Ingresos</option>
+            <select name="tipo_cuenta" id="Select" class="form-select">
+              <option value="A">Activo</option>
+              <option value="P">Pasivo</option>
+              <option value="G">Gastos</option>
+              <option value="C">Capital</option>
+              <option value="I">Ingresos</option>
             </select>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100">Agregar Cuenta</button>
+          <button name="submit" type="submit" class="btn btn-primary w-100">Agregar Cuenta</button>
         </form>
 
       </div>
