@@ -47,22 +47,22 @@
 <?php 
 // conectando a la base de datos del servidoro
 try {
-$link = mysqli_connect('localhost','root','','contabilidad') or die
-('No se pudo conectar  a la base ded datos error:  '.mysqli_error());
-// capturando los datos necesarios
-$codigo  = $_GET["codigo"];
-$nombre = $_GET["cuenta"];
-$tipo = $_GET["tipo_cuenta"];
+  $link = mysqli_connect('localhost','root','','contabilidad') or die
+  ('No se pudo conectar  a la base ded datos error:  '.mysqli_error());
+  // capturando los datos necesarios
+  $codigo  = $_GET["codigo"];
+  $nombre = $_GET["cuenta"];
+  $tipo = $_GET["tipo_cuenta"];
 
-// generando query
-$query = "INSERT INTO cuentascontables VALUES($codigo,'$nombre','$tipo')";
+  // generando query
+  $query = "INSERT INTO cuentascontables VALUES($codigo,'$nombre','$tipo')";
 
 
-$resul = mysqli_query($link,$query) or die("Ocurrio un error: ".mysqli_error());
-echo '<div class="alert alert-success text-center">
-    ✅ ¡La cuenta fue registrada exitosamente!
-</div>';
-mysqli_close($link);
+  $resul = mysqli_query($link,$query) or die("Ocurrio un error: ".mysqli_error());
+  echo '<div class="alert alert-success text-center">
+      ✅ ¡La cuenta fue registrada exitosamente!
+  </div>';
+  mysqli_close($link);
 }catch (Exception $e){
     echo '<div class="alert alert-danger text-center">
             ⚠️favor acceder a la navbar y volver a agregar una cuenta si es lo que desea si no vuelva a menu
