@@ -57,14 +57,30 @@ try {
 
 
   $resul = mysqli_query($link,$query) or die("Ocurrio un error: ".mysqli_error());
-  echo '<div class="alert alert-success text-center">
-      ✅ ¡La cuenta fue registrada exitosamente!
-  </div>';
+  echo "<div class='container my-4'>
+    <div class='row justify-content-center'>
+        <div class='col-md-8'>
+            <div class='alert alert-success alert-dismissible fade show shadow-sm' role='alert'>
+                <i class='fa-solid fa-circle-plus me-2'></i>
+                <strong>¡Éxito!</strong> La cuenta contable ha sido agregada correctamente.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        </div>
+    </div>
+</div>\n"; 
   mysqli_close($link);
 }catch (Exception $e){
-    echo '<div class="alert alert-danger text-center">
-            ⚠️favor acceder a la navbar y volver a agregar una cuenta si es lo que desea si no vuelva a menu
-        </div>';
+   echo "<div class='container my-4'>
+    <div class='row justify-content-center'>
+        <div class='col-md-8'>
+            <div class='alert alert-warning alert-dismissible fade show shadow-sm' role='alert'>
+                <i class='fa-solid fa-triangle-exclamation me-2'></i>
+                <strong>¡Atención!</strong> Por favor accede a la navbar y vuelve a agregar una cuenta, si no deseas agregar una cuenta vuelve al menú.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        </div>
+    </div>
+</div>\n"; 
 }
 
 ?>
