@@ -52,48 +52,35 @@
   </ul>
 </nav> 
 
-<form action="modifcarValue.php" method = "post">
-  <div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-5">
-      <div class="card shadow-sm p-4"> 
-          <?php
-          $codigo = $_GET["NumCuenta"];
-          $nombre = $_GET["NombreCuenta"];
-          $tipo = $_GET["Tipo"];
+<?php
+  // conectandome a la base de datos 
+  $link = mysqli_connect('localhost','root','','contabilidad') or die ('Error de conexión '.mysqli_error());
+  // inicializando variables inciales 
+  $codigo = $_POST["codigo"];
+  $name = $_POST["cuenta_M"];
+  $tipo = $_POST["tipo_cuenta_M"];
 
-          echo'<div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label mb-4 d-block text-center">Agregar Cuenta</label>
-            <!--Input para agregar el nombre de la cuenta-->
+  $query = "UPDATE cuentascontables SET NombreCuenta = '$name', Tipo = '$tipo' WHERE NumCuenta = $codigo";
 
-            <!--Insertar codigo-->
-            <input  name="codigo" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="'.$codigo.'" readonly>
-            <br>
+  $result = mysqli_query($link,$query) or die('Query failed: ' . mysqli_error($link));
 
-            <!--Insertar nombre-->
-            <input  name="cuenta_M"type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserte el nombre de la cuenta">
 
-            <div class="mb-3">
-            <label for="Select" class="form-label">Seleccione el tipo de cuenta:</label>
-            <select name="tipo_cuenta_M" id="Select" class="form-select">
-              <option value="A">Activo</option>
-              <option value="P">Pasivo</option>
-              <option value="G">Gastos</option>
-              <option value="C">Capital</option>
-              <option value="I">Ingresos</option>
-            </select>
-          </div>
-
-          <button name="submit" type="submit" class="btn btn-primary w-100">Modificar Cuenta</button>
-          </div>';
-          ?>
-      </div>
+  echo "<div class='container my-4'>
+    <div class='row justify-content-center'>
+        <div class='col-md-8'>
+            <div class='alert alert-info alert-dismissible fade show shadow-sm' role='alert'>
+                <i class='fa-solid fa-pen-to-square me-2'></i>
+                <strong>¡Actualizado!</strong> La cuenta contable ha sido modificada correctamente.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        </div>
     </div>
-   </div>
-  </div>
+</div>\n";
+  mysqli_close($link);
 
 
-</form>
+
+?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
