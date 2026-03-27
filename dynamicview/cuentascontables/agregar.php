@@ -21,10 +21,8 @@
         Cuentas Contables
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="modificar.html">Listar Cuentas</a></li>
-        <li><a class="dropdown-item py-2" href="#">Modificar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="#">Eliminar Cuenta</a></li>
+        <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
+        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 
