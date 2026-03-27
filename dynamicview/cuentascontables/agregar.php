@@ -29,6 +29,17 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle fs-6 px-3 py-2"
          data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        Partidas Contables
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item py-2" href="../partidascontables/partidascontables.php">Agregar Partida</a></li>
+        <li><a class="dropdown-item py-2" href="#">Listar Partida</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle fs-6 px-3 py-2"
+         data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
         Reportes
       </a>
       <ul class="dropdown-menu">

@@ -32,7 +32,7 @@
         Partidas Contables
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#"">Agregar Partidas </a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/partidascontables.php">Agregar Partidas </a></li>
         <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
       </ul>
     </li>
