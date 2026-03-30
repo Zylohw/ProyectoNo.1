@@ -34,7 +34,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="partidascontables.php">Agregar Partidas </a></li>
-        <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
 
@@ -54,12 +54,13 @@
 </nav>   
 
 <!-- Filtro -->
-<!-- Card del filtro -->
 <div class="container mt-4">
+
+    <!-- Card del filtro -->
     <div class="card shadow-sm border-0 rounded-4 mb-4">
         <div class="card-header bg-primary text-white rounded-top-4 py-3">
             <h5 class="mb-0">
-                <i class="fa-solid fa-filter me-2"></i>Filtrar Libro Diario
+                <i class="fa-solid fa-filter me-2"></i>Filtrar Partidas
             </h5>
         </div>
         <div class="card-body">
@@ -69,7 +70,7 @@
                         <label class="form-label fw-bold">
                             <i class="fa-solid fa-hashtag me-1 text-primary"></i>Número de Partida
                         </label>
-                        <input type="number" name="filtro_partida" class="form-control"
+                        <input type="number" name="filtro_partida" class="form-control" 
                                placeholder="Ej: 60"
                                value="<?php echo isset($_GET['filtro_partida']) ? $_GET['filtro_partida'] : '' ?>">
                     </div>
@@ -86,17 +87,17 @@
                         </button>
                     </div>
                     <div class="col-md-2">
-                        <a href="libroDiario.php" class="btn btn-secondary w-100">
+                        <a href="librodiario.php" class="btn btn-secondary w-100">
                             <i class="fa-solid fa-broom me-1"></i>Limpiar
-                        </a>
+                          </a>
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-</div>
-<?php
 
+   <?php
 $filtro_partida = $_GET["filtro_partida"] ?? '';
 $filtro_fecha   = $_GET["filtro_fecha"]   ?? '';
 
@@ -109,44 +110,29 @@ if($filtro_partida !== ''){
 
 $link = mysqli_connect("localhost", "root", "", "contabilidad") or die("Error: " . mysqli_error($link));
 
-$query = "SELECT rc.NumPartida, rc.NumCuenta, rc.DebeHaber, rc.Valor, 
-                 pc.Fecha, pc.Descripcion, cc.NombreCuenta
+$query = "SELECT rc.NumPartida, rc.NumCuenta, rc.DebeHaber, rc.Valor, pc.Fecha, pc.Descripcion, cc.NombreCuenta
           FROM RegistrosContables rc, PartidasContables pc, CuentasContables cc
           WHERE rc.NumPartida = pc.NumPartida AND rc.NumCuenta = cc.NumCuenta $selectFilter
-          ORDER BY pc.Fecha, rc.NumPartida";
+          ORDER BY rc.NumPartida";
 
 $result = mysqli_query($link, $query) or die("Error: " . mysqli_error($link));
 ?>
 
+<!-- Card de la tabla -->
+<div class="card shadow border-0 rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4 py-3">
+        <h4 class="mb-0">
+            <i class="fa-solid fa-book me-2"></i>Libro Diario
+        </h4>
+        <small>
+            <i class="fa-solid fa-building me-1"></i>Empresa Lift &nbsp;|&nbsp;
+            <i class="fa-solid fa-calendar-days me-1"></i>Fecha de emisión: <?php echo date('d/m/Y'); ?>
+        </small>
+    </div>
+    <div class="card-body p-0">
 
-<!-- Libro diario -->
-<div class="container mt-4">
-    <div class="card shadow border-0 rounded-4">
-
-        <!-- Header -->
-        <div class="card-header bg-primary text-white rounded-top-4 py-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <h4 class="mb-0">
-                    <i class="fa-solid fa-book me-2"></i>Libro Diario
-                </h4>
-            </div>
-        </div>
-
-        <div class="card-body p-0">
-
-<?php 
-// conectandome a la base de datos 
-$link = mysqli_connect('localhost','root','','contabilidad') or die("hubo un error al conectase a la db".mysqli_error());
-
-// query para seleccionar datos 
-$query = "SELECT rc.NumPartida, rc.NumCuenta, rc.DebeHaber, rc.Valor, 
-                 pc.Fecha, pc.Descripcion, cc.NombreCuenta
-          FROM RegistrosContables rc, PartidasContables pc, CuentasContables cc
-          WHERE rc.NumPartida = pc.NumPartida AND rc.NumCuenta = cc.NumCuenta
-          ORDER BY pc.Fecha, rc.NumPartida";
-
-$result = mysqli_query($link, $query) or die("Error: " . mysqli_error($link));
-
+<?php
+// ✅ Usa el $result del filtro, sin nueva conexión ni nuevo query
 echo "<table class='table table-bordered mb-0'>\n";
 echo "<thead class='table-dark'>\n";
 echo "<tr>\n";
@@ -158,30 +144,20 @@ echo "</tr>\n";
 echo "</thead>\n";
 echo "<tbody>\n";
 
-// variables auxiliares 
 $partida_actual = "";
 $subtotal_debe  = 0;
 $subtotal_haber = 0;
-$total_debe     = 0;
-$total_haber    = 0;
 
 while($line = mysqli_fetch_assoc($result)){
 
     if($line["NumPartida"] != $partida_actual){
 
-        // Imprime subtotales de la partida anterior
         if($partida_actual != ""){
             echo "<tr class='table-secondary fw-bold'>\n";
             echo "  <td colspan='2' class='text-end'>Subtotal Partida #$partida_actual</td>\n";
             echo "  <td class='text-end'>Q " . number_format($subtotal_debe, 2) . "</td>\n";
             echo "  <td class='text-end'>Q " . number_format($subtotal_haber, 2) . "</td>\n";
             echo "</tr>\n";
-
-            // Acumula totales generales
-            $total_debe  += $subtotal_debe;
-            $total_haber += $subtotal_haber;
-
-            // Reinicia subtotales
             $subtotal_debe  = 0;
             $subtotal_haber = 0;
         }
@@ -218,29 +194,24 @@ while($line = mysqli_fetch_assoc($result)){
 
 if($partida_actual != ""){
     echo "<tr class='table-secondary fw-bold'>\n";
-    echo "  <td colspan='2' class='text-end'>Total Partida #$partida_actual</td>\n";
+    echo "  <td colspan='2' class='text-end'>Subtotal Partida #$partida_actual</td>\n";
     echo "  <td class='text-end'>Q " . number_format($subtotal_debe, 2) . "</td>\n";
     echo "  <td class='text-end'>Q " . number_format($subtotal_haber, 2) . "</td>\n";
     echo "</tr>\n";
-
-    $total_debe  += $subtotal_debe;
-    $total_haber += $subtotal_haber;
 }
-
-
 
 echo "</tbody>\n";
 echo "</table>\n";
 
 mysqli_close($link);
-
-
-
 ?>
+    </div>
+</div> 
 
 
 
 
+<script src="../../logic/filterLibroDiario.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
