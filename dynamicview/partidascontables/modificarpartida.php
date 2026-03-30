@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modificar Partida</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <title>Partidas contables</title>
-
 </head>
 <body>
+
   <!-- NavBar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 py-3">
   <a class="navbar-brand fw-semibold fs-4" href="../../index.html"><i class="fa-solid fa-leaf"></i></a>
@@ -51,9 +51,11 @@
     </li>
 
   </ul>
-</nav> 
+</nav>   
 
-<!--Empieza form para agregar partidas-->
+
+
+<!--Empieza form para modificar partidas-->
 <div class="container mt-5 pt-5" style="max-width: 700px;">
     <div class="card shadow-sm border-0 rounded-4">
 
@@ -61,19 +63,22 @@
         <div class="card-header bg-primary text-white rounded-top-4 py-3">
             <h4 class="mb-0">
                 <i class="fa-solid fa-file-invoice me-2"></i>
-                Agregar Partida Contable
+                Modificar Partida Contable
             </h4>
         </div>
 
         <div class="card-body p-4">
-            <form action="partidasVerify.php" method="get">
+            <form action="partidasModifyVerify.php" method="post">
                 <!-- Numero de Partida -->
                 <div class="mb-3">
                     <label class="form-label fw-bold">
                         <i class="fa-solid fa-hashtag me-1 text-primary"></i>
-                        Número de Partida
                     </label>
-                    <input type="text" class="form-control" placeholder="Ej: 001" name="numero_partida">
+
+                    <?php
+                    $numPartida = $_GET["NumPartida"];
+                    echo "<input type='text' class='form-control'  name='numero_partida' value='".$numPartida."' readonly>";
+                     ?>
                 </div>
 
                 <!-- Fecha -->
@@ -82,7 +87,10 @@
                         <i class="fa-solid fa-calendar-days me-1 text-primary"></i>
                         Fecha de Ingreso
                     </label>
-                    <input type="date" class="form-control" name="fecha">
+                    <?php 
+                    $fecha = $_GET["fecha"];
+                    echo "<input type='date' name = 'newFecha'class='form-control' value='".$fecha."'>"
+                    ?>
                 </div>
 
                 <!-- Descripcion -->
@@ -95,7 +103,10 @@
                         <span class="input-group-text bg-light">
                             <i class="fa-solid fa-align-left text-secondary"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Ingrese una breve descripción de la partida" maxlength="100" name="descripcion">
+                        <?php 
+                            $descripion = $_GET["descripcion"];
+                            echo "<input type='text' class='form-control'  name = 'newDescripcion'placeholder='Ingrese una breve descripción de la partida' maxlength='100' value='".$descripion."'>";
+                        ?>
                     </div>
                 </div>
 
@@ -111,7 +122,7 @@
                         </button>
                     </div>
 
-                    <div class="table-responsive">
+                   <div class="table-responsive">
                         <table class="table table-bordered table-hover align-middle mb-0">
                             <thead class="table-primary text-center" id="tablaPartidas">
                                 <tr>
@@ -122,49 +133,67 @@
                                 </tr>
                             </thead>
                             <tbody id="cuerpo">
-                            <tr>
-                              <?php 
-                                $link = mysqli_connect('localhost','root','','contabilidad');
-                                $query = "SELECT NumCuenta, NombreCuenta FROM CuentasContables order by NumCuenta";
-                                $result = mysqli_query($link,$query) or die("Error en la consulta: " . mysqli_error($link));
+                                <?php 
+                                    $link = mysqli_connect('localhost','root','','contabilidad');
 
-                                echo "
-                                      <td>
-                                          <select name='tipo_cuenta[]' class='form-select'>
-                                              <option value='' disabled selected>Seleccione una cuenta</option>";
+                                    // Guarda todas las cuentas en un array una sola vez
+                                    $queryCuentas = "SELECT NumCuenta, NombreCuenta FROM CuentasContables ORDER BY NumCuenta";
+                                    $resultCuentas = mysqli_query($link, $queryCuentas);
+                                    $cuentas = [];
+                                    while($cuenta = mysqli_fetch_assoc($resultCuentas)){
+                                        $cuentas[] = $cuenta;
+                                    }
 
-                                              while($line = mysqli_fetch_assoc($result)){
-                                                  echo "<option value='" . $line['NumCuenta'] . "'>" . $line['NumCuenta'] . " - " . $line['NombreCuenta'] . "</option>";
-                                              }
+                                    // Trae los registros de la partida
+                                    $queryRegistros = "SELECT rc.NumCuenta, rc.DebeHaber, rc.Valor
+                                                    FROM RegistrosContables rc
+                                                    WHERE rc.NumPartida = '$numPartida'";
+                                    $resultRegistros = mysqli_query($link, $queryRegistros) or die("Error: " . mysqli_error($link));
 
-                                  echo "   </select>
-                                      </td>
-                                      <td><input type='number' name='D[]' class='form-control' placeholder='0.00' step=2 ></td>
-                                      <td><input type='number' class='form-control' name='H[]' placeholder='0.00'step=2></td>
-                                      <td>
-                                          <button type='button' class='btn btn-danger btn-sm' onclick='this.closest(\"tr\").remove()'>
-                                              <i class='fa-solid fa-trash'></i>
-                                          </button>
-                                      </td>
-                                  ";                                
-                                mysqli_close($link);
+                                    while($registro = mysqli_fetch_assoc($resultRegistros)){
 
-                              ?>
+                                        $debe  = ($registro["DebeHaber"] == "D") ? $registro["Valor"] : "0.00";
+                                        $haber = ($registro["DebeHaber"] == "H") ? $registro["Valor"] : "0.00";
 
-                            </tr> 
-                            </tbody>
+                                        echo "<tr>";
+                                        echo "<td><select name='tipo_cuenta[]' class='form-select'>";
+                                        echo "<option value='' disabled>Seleccione una cuenta</option>";
+
+                                        // Recorre el array (no tiene problema de puntero)
+                                        foreach($cuentas as $cuenta){
+                                            $selected = ($cuenta["NumCuenta"] == $registro["NumCuenta"]) ? "selected" : "";
+                                            echo "<option value='" . $cuenta["NumCuenta"] . "' $selected>" 
+                                                . $cuenta["NumCuenta"] . " - " . $cuenta["NombreCuenta"] 
+                                                . "</option>";
+                                        }
+
+                                        echo "</select></td>";
+                                        echo "<td><input type='number' name='D[]' class='form-control' value='" . $debe  . "' step='0.01'></td>";
+                                        echo "<td><input type='number' name='H[]' class='form-control' value='" . $haber . "' step='0.01'></td>";
+                                        echo "<td>
+                                                <button type='button' class='btn btn-danger btn-sm' onclick='this.closest(\"tr\").remove()'>
+                                                    <i class='fa-solid fa-trash'></i>
+                                                </button>
+                                            </td>";
+                                        echo "</tr>";
+                                    }
+
+                                    mysqli_close($link);
+                                ?>
+                                </tbody> 
                         </table>
-                    </div>
+                    </div> 
                 </div>
 
                 <!-- Botón enviar -->
-                <input type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm" value="Guardar Partida"> 
+                <input type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm" value="Modificar Partida">
 
             </form>
         </div>
     </div>
 
-<script src="../../logic/agregarFila.js"></script>
+    
+<script src="../../logic/modificarFila.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

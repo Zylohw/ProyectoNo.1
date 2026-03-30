@@ -10,7 +10,7 @@
 <body>
 
  <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 py-3">
-  <a class="navbar-brand fw-semibold fs-4" href="../../index.html">Menu</a>
+  <a class="navbar-brand fw-semibold fs-4" href="../../index.html"><i class="fa-solid fa-leaf"></i></a>
 
   <ul class="nav nav-pills gap-2 ms-3">
     <li class="nav-item dropdown">

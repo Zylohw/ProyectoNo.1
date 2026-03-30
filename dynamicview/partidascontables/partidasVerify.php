@@ -10,7 +10,7 @@
 <body>
   <!-- NavBar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary px-4 py-3">
-  <a class="navbar-brand fw-semibold fs-4" href="../../index.html">Menu</a>
+  <a class="navbar-brand fw-semibold fs-4" href="../../index.html"><i class="fa-solid fa-leaf"></i></a>
 
   <ul class="nav nav-pills gap-2 ms-3">
     <li class="nav-item dropdown">
@@ -32,9 +32,8 @@
         Partidas Contables
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#"">Agregar Partidas </a></li>
-        <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
-        <li><a class="dropdown-item py-2" href="#">Visualizar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="partidascontables.php"">Agregar Partidas </a></li>
+        <li><a class="dropdown-item py-2" href="listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
 
