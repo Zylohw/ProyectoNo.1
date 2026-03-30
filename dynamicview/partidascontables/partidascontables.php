@@ -68,7 +68,6 @@
 
         <div class="card-body p-4">
             <form action="partidasVerify.php" method="get">
-
                 <!-- Numero de Partida -->
                 <div class="mb-3">
                     <label class="form-label fw-bold">
@@ -129,8 +128,6 @@
                                 $link = mysqli_connect('localhost','root','','contabilidad');
                                 $query = "SELECT NumCuenta, NombreCuenta FROM CuentasContables order by NumCuenta";
                                 $result = mysqli_query($link,$query) or die("Error en la consulta: " . mysqli_error($link));
-                                $debeCounter = 0;                               
-                                $haberCounter = 0;                               
 
                                 echo "
                                       <td>
@@ -143,8 +140,8 @@
 
                                   echo "   </select>
                                       </td>
-                                      <td><input type='number' name='D[]' class='form-control' placeholder='0.00' ></td>
-                                      <td><input type='number' class='form-control' name='H[]' placeholder='0.00'></td>
+                                      <td><input type='number' name='D[]' class='form-control' placeholder='0.00' step=2 ></td>
+                                      <td><input type='number' class='form-control' name='H[]' placeholder='0.00'step=2></td>
                                       <td>
                                           <button type='button' class='btn btn-danger btn-sm' onclick='this.closest(\"tr\").remove()'>
                                               <i class='fa-solid fa-trash'></i>
