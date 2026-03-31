@@ -20,7 +20,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="../cuentascontables/listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 
@@ -45,7 +45,7 @@
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../reportescontables/librodiario.php">Libro Diario</a></li>
         <li><a class="dropdown-item py-2" href="../reportescontables/libromayor.php">Libro Mayor</a></li>
-        <li><a class="dropdown-item py-2" href="../reportescontables/libromayor.php">Balance de Saldo</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/balancesaldo.php">Balance de Saldo</a></li>
       </ul>
     </li>
 
@@ -187,7 +187,8 @@ while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     echo "\t\t<td>" . $line["NumCuenta"] . "</td>\n";
     echo "\t\t<td>" . $line["NombreCuenta"] . "</td>\n";
     echo "\t\t<td>" . $db . "</td>\n";
-    echo "\t\t<td>" . $line["Valor"] . "</td>\n";
+    echo "\t\t<td>" . number_format($line["Valor"],2) . "</td>\n";
+
     echo "\t</tr>\n";
 }
 

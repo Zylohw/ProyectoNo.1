@@ -21,7 +21,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="../cuentascontables/listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 

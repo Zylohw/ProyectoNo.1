@@ -22,7 +22,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="../cuentascontables/listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 
@@ -35,7 +35,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="partidascontables.php">Agregar Partidas </a></li>
-        <li><a class="dropdown-item py-2" href="listarpartidascontables.php">Listar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
 
@@ -45,9 +45,9 @@
         Reportes
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#">Libro Diario</a></li>
-        <li><a class="dropdown-item py-2" href="#">Libro Mayor</a></li>
-        <li><a class="dropdown-item py-2" href="#">Balance de Saldo</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/librodiario.php">Libro Diario</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/libromayor.php">Libro Mayor</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/balancesaldo.php">Balance de Saldo</a></li>
       </ul>
     </li>
 
@@ -58,11 +58,11 @@
 
   $NumPartida = $_GET["NumPartida"];
   $link = mysqli_connect('localhost','root','','contabilidad') or die("Hubo un error al conectarse a la db".mysqli_error());
-    $query1 = "DELETE FROM RegistrosContables WHERE NumPartida=$NumPartida" or die("Error en la consulta: " . mysqli_error($link));
-    $query2 = "DELETE FROM PartidasContables WHERE NumPartida=$NumPartida" or die("Error en la consulta: " . mysqli_error($link));
+    $query1 = "DELETE FROM RegistrosContables WHERE NumPartida=$NumPartida";
+    $query2 = "DELETE FROM PartidasContables WHERE NumPartida=$NumPartida";
 
-    $result1 = mysqli_query($link,$query1);
-    $result2 = mysqli_query($link,$query2);
+    $result1 = mysqli_query($link,$query1)or die("Error en la consulta: " . mysqli_error($link));
+    $result2 = mysqli_query($link,$query2)or die("Error en la consulta: " . mysqli_error($link));
 
     echo "<div class='container my-4'>
     <div class='row justify-content-center'>

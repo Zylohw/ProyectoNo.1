@@ -20,7 +20,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="../cuentascontables/listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 
@@ -32,8 +32,8 @@
         Partidas Contables
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="partidascontables.php">Agregar Partidas </a></li>
-        <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/partidascontables.php">Agregar Partidas </a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
 
@@ -44,8 +44,8 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="librodiario.php">Libro Diario</a></li>
-        <li><a class="dropdown-item py-2" href="libromayor">Libro Mayor</a></li>
-        <li><a class="dropdown-item py-2" href="#">Balance de Saldo</a></li>
+        <li><a class="dropdown-item py-2" href="#">Libro Mayor</a></li>
+        <li><a class="dropdown-item py-2" href="balancesaldo.php">Balance de Saldo</a></li>
       </ul>
     </li>
 

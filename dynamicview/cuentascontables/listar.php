@@ -33,7 +33,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../partidascontables/partidascontables.php">Agregar Partidas </a></li>
-        <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
 
@@ -43,9 +43,9 @@
         Reportes
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#">Libro Diario</a></li>
-        <li><a class="dropdown-item py-2" href="#">Libro Mayor</a></li>
-        <li><a class="dropdown-item py-2" href="#">Balance de Saldo</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/librodiario.php">Libro Diario</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/libromayor.php">Libro Mayor</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/balancesaldo.php">Balance de Saldo</a></li>
       </ul>
     </li>
 

@@ -20,7 +20,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="../cuentascontables/listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 
@@ -32,8 +32,8 @@
         Partidas Contables
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="partidascontables.php">Agregar Partidas </a></li>
-        <li><a class="dropdown-item py-2" href="#">Listar Partidas</a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/partidascontables.php">Agregar Partidas </a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
 
@@ -86,7 +86,6 @@ echo "  <th>N° Cuenta</th>\n";
 echo "  <th>Nombre de Cuenta</th>\n";
 echo "  <th class='text-end'>Debe (Q)</th>\n";
 echo "  <th class='text-end'>Haber (Q)</th>\n";
-echo "  <th class='text-end'>Saldo (Q)</th>\n";
 echo "</tr>\n";
 echo "</thead>\n";
 echo "<tbody>\n";
@@ -98,7 +97,6 @@ $gran_total_haber = 0;
 while($line = mysqli_fetch_assoc($result)){
     $total_debe  = $line["TotalDebe"];
     $total_haber = $line["TotalHaber"];
-    $saldo       = abs($total_debe - $total_haber);
     $tipo        = $line["Tipo"];
 
     // Nombre del tipo con if
@@ -113,7 +111,7 @@ while($line = mysqli_fetch_assoc($result)){
     if($tipo != $tipo_actual){
         $tipo_actual = $tipo;
         echo "<tr class='table-dark'>\n";
-        echo "  <td colspan='5' class='fw-bold text-warning'>\n";
+        echo "  <td colspan='4' class='fw-bold text-warning'>\n";
         echo "      <i class='fa-solid fa-tag me-2'></i>" . $nombre_tipo . "\n";
         echo "  </td>\n";
         echo "</tr>\n";
@@ -127,7 +125,6 @@ while($line = mysqli_fetch_assoc($result)){
     echo "  <td class='ps-4'>" . $line["NombreCuenta"] . "</td>\n";
     echo "  <td class='text-end'>Q " . number_format($total_debe, 2) . "</td>\n";
     echo "  <td class='text-end'>Q " . number_format($total_haber, 2) . "</td>\n";
-    echo "  <td class='text-end text-warning fw-bold'>Q " . number_format($saldo, 2) . "</td>\n";
     echo "</tr>\n";
 }
 
@@ -136,7 +133,6 @@ echo "<tr class='table-dark fw-bold'>\n";
 echo "  <td colspan='2' class='text-end text-white'>TOTAL GENERAL</td>\n";
 echo "  <td class='text-end text-warning'>Q " . number_format($gran_total_debe, 2) . "</td>\n";
 echo "  <td class='text-end text-warning'>Q " . number_format($gran_total_haber, 2) . "</td>\n";
-echo "  <td></td>\n";
 echo "</tr>\n";
 
 echo "</tbody>\n";

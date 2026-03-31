@@ -21,7 +21,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../../staticview/cuentascontables/agregar.html">Agregar Cuenta</a></li>
-        <li><a class="dropdown-item py-2" href="listar.php">Listar Cuentas</a></li>
+        <li><a class="dropdown-item py-2" href="../cuentascontables/listar.php">Listar Cuentas</a></li>
       </ul>
     </li>
 
@@ -33,7 +33,7 @@
         Partidas Contables
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="partidascontables.php">Agregar Partidas </a></li>
+        <li><a class="dropdown-item py-2" href="#">Agregar Partidas </a></li>
         <li><a class="dropdown-item py-2" href="listarpartidas.php">Listar Partidas</a></li>
       </ul>
     </li>
@@ -44,9 +44,9 @@
         Reportes
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#">Libro Diario</a></li>
-        <li><a class="dropdown-item py-2" href="#">Libro Mayor</a></li>
-        <li><a class="dropdown-item py-2" href="#">Balance de Saldo</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/librodiario.php">Libro Diario</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/libromayor.php">Libro Mayor</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/balancesaldo.php">Balance de Saldo</a></li>
       </ul>
     </li>
 
@@ -139,8 +139,8 @@
 
                                   echo "   </select>
                                       </td>
-                                      <td><input type='number' name='D[]' class='form-control' placeholder='0.00' step=2 ></td>
-                                      <td><input type='number' class='form-control' name='H[]' placeholder='0.00'step=2></td>
+                                      <td><input type='number' name='D[]' class='form-control' placeholder='0.00' step='0.01' ></td>
+                                      <td><input type='number' class='form-control' name='H[]' placeholder='0.00'step='0.01'></td>
                                       <td>
                                           <button type='button' class='btn btn-danger btn-sm' onclick='this.closest(\"tr\").remove()'>
                                               <i class='fa-solid fa-trash'></i>

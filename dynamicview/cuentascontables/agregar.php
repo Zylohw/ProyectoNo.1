@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--Link para tener bootstrap-->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>agregar</title>
 </head>
 <body>
@@ -33,7 +34,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item py-2" href="../partidascontables/partidascontables.php">Agregar Partida</a></li>
-        <li><a class="dropdown-item py-2" href="#">Listar Partida</a></li>
+        <li><a class="dropdown-item py-2" href="../partidascontables/listarpartidas.php">Listar Partida</a></li>
       </ul>
     </li>
 
@@ -43,9 +44,9 @@
         Reportes
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item py-2" href="#">Libro Diario</a></li>
-        <li><a class="dropdown-item py-2" href="#">Libro Mayor</a></li>
-        <li><a class="dropdown-item py-2" href="#">Balance de Saldo</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/librodiario.php">Libro Diario</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/libromayor.php">Libro Mayor</a></li>
+        <li><a class="dropdown-item py-2" href="../reportescontables/balancesaldo.php">Balance de Saldo</a></li>
       </ul>
     </li>
 
